@@ -75,31 +75,40 @@
 <div class="header">
     <h1 class="main-title">Barch Benchmarks</h1>
     <div class="nav-menu">
-        <a href="index.html" class="nav-button active">SET</a>
-        <a href="index_get.html" class="nav-button">GET</a>
+        <a href="index.html" class="nav-button">SET</a>
+        <a href="index_get.html" class="nav-button active">GET</a>
         <a href="index_memtier_1_1.html" class="nav-button">MEMTIER 1:1</a>
         <a href="index_memtier_1_10.html" class="nav-button">MEMTIER 1:10</a>
     </div>
 </div>
 
 <div class="container">
-    <h2>SET Pipeline 1</h2>
-    <canvas id="set_chart1"></canvas>
-    <code>./valkey-benchmark -t set -r 10000000 -n 1000000 -P 1 -q --threads 1 -p 14000</code>
+    <h2>GET Pipeline 1</h2>
+    <canvas id="get_chart1"></canvas>
+    <code>./valkey-benchmark -t get -r 10000000 -n 1000000 -P 1 -q --threads 1 -p 14000</code>
 </div>
 
 <div class="container">
-    <h2>SET Pipeline 5</h2>
-    <canvas id="set_chart5"></canvas>
-    <code>./valkey-benchmark -t set -r 10000000 -n 1000000 -P 5 -q --threads 1 -p 14000</code>
+    <h2>GET Pipeline 5</h2>
+    <canvas id="get_chart5"></canvas>
+    <code>./valkey-benchmark -t get -r 10000000 -n 1000000 -P 5 -q --threads 1 -p 14000</code>
 </div>
 
 <div class="container">
-    <h2>SET Pipeline 10</h2>
-    <canvas id="set_chart10"></canvas>
-    <code>./valkey-benchmark -t set -r 10000000 -n 1000000 -P 10 -q --threads 1 -p 14000</code>
+    <h2>GET Pipeline 10</h2>
+    <canvas id="get_chart10"></canvas>
+    <code>./valkey-benchmark -t get -r 10000000 -n 1000000 -P 10 -q --threads 1 -p 14000</code>
 </div>
 
+<div class="container">
+    <h2>GET Pipeline 20</h2>
+    <canvas id="get_chart20"></canvas>
+    <code>./valkey-benchmark -t get -r 10000000 -n 1000000 -P 20 -q --threads 1 -p 14000</code>
+</div>
+<div class="container">
+    <h2>GET command line</h2>
+    <code></code>
+</div>
 <script>
     // Configuration for creating charts
     function createChart(canvasId, data1, data2, data3) {
@@ -175,24 +184,30 @@
     }
 
     // Pipeline 1 data
-    createChart('set_chart1',
-        [132388.3, 257109.6, 358434.0, 444980.9, 520701.3],
-        [134621.1, 177616.7, 157952.3, 173930.3, 159478.3],
+    createChart('get_chart1',
+        [127413.5, 247772.4, 349611.2, 435711.2, 508109.6],
+        [135818.7, 179697.7, 178462.2, 174802.4, 172894.8],
         [134621.1, 177616.7, 157952.3, 173930.3, 159478.3]
     );
 
     // Pipeline 5 data
-    createChart('set_chart5',
-        [576671.6, 1114219.6, 1522703.0, 1765585.2, 2087888.9],
-        [557261.9, 529906.8, 569849.3, 586005.7, 576129.6],
-        [458926.12, 499251.12, 570776.25, 532765.06, 532907.00]
+    createChart('get_chart5',
+        [606978.7, 1110247.62, 1537988.38, 1903674.12, 2104377.25],
+        [623285.94, 624843.81, 614892.69, 614930.56, 605620.19],
+        [638936.81, 634759.44, 624843.81, 615195.38, 615157.44]
     );
 
     // Pipeline 10 data
-    createChart('set_chart10',
-        [1146588.4, 2045083.9, 2669933.5, 2941950.2, 2857538.0],
-        [743867.9, 761384.8, 798577.1, 788881.4, 796392.6],
-        [847153.9, 805158.4, 799200.75, 817290.25, 817290.25]
+    createChart('get_chart10',
+        [1156203.00, 1998002.00, 2666666.75, 3332222.75, 3632401.00],
+        [918864.25, 888099.44, 908595.38, 908347.75, 908265.19],
+        [964785.38, 951474.75, 908595.38, 929281.69, 908595.38]
+    );
+    // Pipeline 20 data
+    createChart('get_chart20',
+        [2058884.12, 3331112.50, 4440497.00, 4997501.50, 4995005.00],
+        [1202212.12, 1175364.25, 1175226.25, 1140771.25, 1174398.12],
+        [1265182.25, 1211387.00, 1210946.88, 1248127.75, 1247816.38]
     );
 </script>
 </body>

@@ -75,29 +75,31 @@
 <div class="header">
     <h1 class="main-title">Barch Benchmarks</h1>
     <div class="nav-menu">
-        <a href="index.html" class="nav-button active">SET</a>
+        <a href="index.html" class="nav-button">SET</a>
         <a href="index_get.html" class="nav-button">GET</a>
-        <a href="index_memtier_1_1.html" class="nav-button">MEMTIER 1:1</a>
+        <a href="index_memtier_1_1.html" class="nav-button active">MEMTIER 1:1</a>
         <a href="index_memtier_1_10.html" class="nav-button">MEMTIER 1:10</a>
     </div>
 </div>
 
 <div class="container">
-    <h2>SET Pipeline 1</h2>
+    <h2>Memtier 1:1 Pipeline 1</h2>
     <canvas id="set_chart1"></canvas>
-    <code>./valkey-benchmark -t set -r 10000000 -n 1000000 -P 1 -q --threads 1 -p 14000</code>
 </div>
 
 <div class="container">
-    <h2>SET Pipeline 5</h2>
-    <canvas id="set_chart5"></canvas>
-    <code>./valkey-benchmark -t set -r 10000000 -n 1000000 -P 5 -q --threads 1 -p 14000</code>
-</div>
-
-<div class="container">
-    <h2>SET Pipeline 10</h2>
+    <h2>Memtier 1:1  Pipeline 10</h2>
     <canvas id="set_chart10"></canvas>
-    <code>./valkey-benchmark -t set -r 10000000 -n 1000000 -P 10 -q --threads 1 -p 14000</code>
+</div>
+
+<div class="container">
+    <h2>Memtier 1:1 Pipeline 20</h2>
+    <canvas id="set_chart20"></canvas>
+</div>
+
+<div class="container">
+    <h2>Memtier 1:1 command line</h2>
+    <code>memtier_benchmark -4 -n 100000 --ratio=1:1 --pipeline=10 -c 16 -t 2 --hide-histogram -p 7777</code>
 </div>
 
 <script>
@@ -108,7 +110,7 @@
         const data = {
             labels: ['1', '2', '3', '4', '5'],
             datasets: [{
-                label: 'Barch Ordered (0.3.4.15b)',
+                label: 'Barch (0.3.4.15b)',
                 data: data1,
                 backgroundColor: '#4b5563',
                 borderColor: '#4b5563',
@@ -176,23 +178,23 @@
 
     // Pipeline 1 data
     createChart('set_chart1',
-        [132388.3, 257109.6, 358434.0, 444980.9, 520701.3],
-        [134621.1, 177616.7, 157952.3, 173930.3, 159478.3],
-        [134621.1, 177616.7, 157952.3, 173930.3, 159478.3]
-    );
-
-    // Pipeline 5 data
-    createChart('set_chart5',
-        [576671.6, 1114219.6, 1522703.0, 1765585.2, 2087888.9],
-        [557261.9, 529906.8, 569849.3, 586005.7, 576129.6],
-        [458926.12, 499251.12, 570776.25, 532765.06, 532907.00]
+        [138425.40, 266651.19, 363532.55, 470407.42, 508732.96],
+        [148063.76, 191484.23, 192632.20, 184425.59, 187258.02],
+        [148642.70, 180564.88, 180019.77, 182220.83, 179596.39]
     );
 
     // Pipeline 10 data
     createChart('set_chart10',
-        [1146588.4, 2045083.9, 2669933.5, 2941950.2, 2857538.0],
-        [743867.9, 761384.8, 798577.1, 788881.4, 796392.6],
-        [847153.9, 805158.4, 799200.75, 817290.25, 817290.25]
+        [1001461.82, 1404064.55, 2426582.61, 2382119.96, 3217314.30],
+        [1076416.13, 1276707.63, 1253110.91, 1288951.25, 1252412.07],
+        [789669.54, 1038714.51, 1228470.10, 1211394.49, 1201121.49]
+    );
+
+    // Pipeline 20 data
+    createChart('set_chart20',
+        [1630557, 2543461, 3349631, 3826928, 3937221],
+        [1531713, 1930052, 1868003, 1895042, 1840003],
+        [1637531, 1755797, 1765547, 1725312, 1755877]
     );
 </script>
 </body>
